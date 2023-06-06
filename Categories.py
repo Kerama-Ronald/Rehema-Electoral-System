@@ -3,7 +3,11 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
-class Grade(Base):
-    __tablename__ = 'Grades'
+class Category(Base):
+    __tablename__ = 'Categories'
     id = Column(Integer, primary_key=True)
-    Student_Grade = Column(String(1))
+    School_level = Column(String(32))
+    Form_level = Column(String(32))
+    Class_level = Column(String(32))
+
+    

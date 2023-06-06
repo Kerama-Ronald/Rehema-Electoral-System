@@ -1,8 +1,11 @@
-from sqlalchemy import create_engine,Column,String,Integer,Base
-engine = create_engine('postgresql://usr:pass@localhost:5432/sqlalchemy')
+from sqlalchemy import Column, Integer, ForeignKey
+from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import declarative_base
 
-class Contestants(Base):
-    __tablename__ = 'Contestants'
-    id=Column(Integer, primary_key=True)
-    Fees_paid=Column(Integer)
-    
+Base = declarative_base()
+
+class Fee(Base):
+    __tablename__ = 'Fees'
+    id = Column(Integer, primary_key=True)
+    Fees_paid = Column(Integer)
+    contestant_id = Column(Integer, ForeignKey('Contestants.id'), unique=True)
