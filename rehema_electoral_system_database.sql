@@ -1,5 +1,5 @@
 -- Create Tables
-CREATE TABLE students (
+CREATE TABLE  (
     admission_number TEXT PRIMARY KEY,
     first_name TEXT,
     last_name TEXT,
