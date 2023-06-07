@@ -1,6 +1,30 @@
-def main() :
- 
- print("Hello, world")
- 
- if __name__ == "__main__" :
-   main()
+from queries import get_contestants, get_categories, get_winners
+from reports import generate_voters_report, generate_contestants_report, generate_winners_report
+from seed_data import seed_data
+
+# Seed initial data
+seed_data()
+
+# Generate reports
+voters_report = generate_voters_report()
+contestants_report = generate_contestants_report()
+winners_report = generate_winners_report()
+
+# Print reports
+print("Voters Report:")
+for entry in voters_report:
+    for key, value in entry.items():
+        print(f"{key}: {value}")
+    print()
+
+print("Contestants Report:")
+for entry in contestants_report:
+    for key, value in entry.items():
+        print(f"{key}: {value}")
+    print()
+
+print("Winners Report:")
+for entry in winners_report:
+    for key, value in entry.items():
+        print(f"{key}: {value}")
+    print()
