@@ -20,8 +20,8 @@ def seed_data():
     fee1 = Fees(Balance=0)
     fee2 = Fees(Balance=100)
 
-    contestant1 = Contestant(First_Name='Faith', Last_Name='Kilonzi', Gender='Male', Category=category1, Form='7A', Stream='S', Grade=grade1, Fees=fee1)
-    contestant2 = Contestant(First_Name='Raphael', Last_Name='Katana', Gender='Female', Category=category2, Form='3B', Stream='T', Grade=grade2, Fees=fee2)
+    contestant1 = Contestant(First_Name='Faith', Last_Name='Kilonzi', Gender='Male', Form='7A', Stream='S')
+    contestant2 = Contestant(First_Name='Raphael', Last_Name='Katana', Gender='Female',Form='3B', Stream='T')
 
     session.add_all([category1, category2, grade1, grade2, fee1, fee2, contestant1, contestant2])
     session.commit()
