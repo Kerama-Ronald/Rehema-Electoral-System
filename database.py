@@ -15,19 +15,6 @@ class Category(Base):
     School_level = Column(String(32))
     Form_level = Column(String(32))
     Class_level = Column(String(32))
-    contestants = relationship("Contestant", backref="category")
-
-class Grade(Base):
-    __tablename__ = 'Grades'
-    id = Column(Integer, primary_key=True)
-    Grade_name = Column(String(32))
-    contestants = relationship("Contestant", backref="grade")
-
-class Fee(Base):
-    __tablename__ = 'Fees'
-    id = Column(Integer, primary_key=True)
-    Amount = Column(Integer)
-    contestants = relationship("Contestant", backref="fee")
 
 class Contestant(Base):
     __tablename__ = 'Contestants'
@@ -40,6 +27,17 @@ class Contestant(Base):
     Stream = Column(String(32))
     Grade_id = Column(Integer, ForeignKey('Grades.id'))
     Fees_id = Column(Integer, ForeignKey('Fees.id'))
+    fees = relationship("Fee", foreign_keys=[Fees_id])
+
+class Grade(Base):
+    __tablename__ = 'Grades'
+    id = Column(Integer, primary_key=True)
+    Student_Grade = Column(String(1))
+
+class Fee(Base):
+    __tablename__ = 'Fees'
+    id = Column(Integer, primary_key=True)
+    Amount = Column(Integer)
 
 class Result(Base):
     __tablename__ = 'Results'
@@ -49,6 +47,17 @@ class Result(Base):
     Percentage_votes = Column(Integer)
     contestant_id = Column(Integer, ForeignKey('Contestants.id'), unique=True)
     contestant = relationship("Contestant", backref="results")
+
+class Voter(Base):
+    __tablename__ = 'Voters'
+    id = Column(Integer, primary_key=True)
+    First_Name = Column(String(32))
+    Last_Name = Column(String(32))
+    Gender = Column(String(32))
+    Form = Column(String(32))
+    Stream = Column(String(32))
+    results_id = Column(Integer, ForeignKey('Results.id'))
+    results = relationship("Result", backref="voter")
 
 def create_category():
     school_level = input("Enter School Level: ")
