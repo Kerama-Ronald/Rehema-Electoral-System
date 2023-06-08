@@ -41,6 +41,15 @@ class Contestant(Base):
     Grade_id = Column(Integer, ForeignKey('Grades.id'))
     Fees_id = Column(Integer, ForeignKey('Fees.id'))
 
+class Result(Base):
+    __tablename__ = 'Results'
+    id = Column(Integer, primary_key=True)
+    Votes_garnered = Column(String(32))
+    Votes_cast = Column(String(32))
+    Percentage_votes = Column(Integer)
+    contestant_id = Column(Integer, ForeignKey('Contestants.id'), unique=True)
+    contestant = relationship("Contestant", backref="results")
+
 def create_category():
     school_level = input("Enter School Level: ")
     form_level = input("Enter Form Level: ")
@@ -95,29 +104,7 @@ def read_grades():
 def read_fees():
     fees = session.query(Fee).all()
     print("Fees:")
-    for fee in fees:
-        print(f"ID: {fee.id}, Amount: {fee.Amount}")
-
-def read_contestants():
-    contestants = session.query(Contestant).all()
-    print("Contestants:")
-    for contestant in contestants:
-        print(f"ID: {contestant.id}, First Name: {contestant.First_Name}, Last Name: {contestant.Last_Name}, "
-              f"Gender: {contestant.Gender}, Category ID: {contestant.Category_id}, Form: {contestant.Form}, "
-              f"Stream: {contestant.Stream}, Grade ID: {contestant.Grade_id}, Fees ID: {contestant.Fees_id}")
-
-def update_category():
-    category_id = int(input("Enter Category ID to update: "))
-    category = session.query(Category).get(category_id)
-    if category:
-        school_level = input("Enter School Level: ")
-        form_level = input("Enter Form Level: ")
-        class_level = input("Enter Class Level: ")
-        category.School_level = school_level
-        category.Form_level = form_level
-        category.Class_level = class_level
-        session.commit()
-        print("Category updated successfully!")
+    for fee in fees:python
     else:
         print("Category not found!")
 

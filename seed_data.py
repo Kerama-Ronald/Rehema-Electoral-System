@@ -14,8 +14,8 @@ def seed_data():
     category1 = Category(School_level='Primary', Form_level='Upper Primary', Class_level='Class 7')
     category2 = Category(School_level='Secondary', Form_level='High School', Class_level='Form 3')
 
-   # grade1 = Grade(Student_Grade='B')
-    #grade2 = Grade(Student_Grade='C')
+   grade1 = Grade(Student_Grade='B')
+    grade2 = Grade(Student_Grade='C')
 
     fee1 = Fee(Balance=0)
     fee2 = Fee(Balance=100)
