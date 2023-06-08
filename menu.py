@@ -1,118 +1,52 @@
-from sqlalchemy import engine_from_config
-from database import Base, create_category, create_contestant, create_fee, create_grade, delete_category, delete_contestant, delete_fee, delete_grade, read_categories, read_fees, read_grades, update_category, update_contestant, update_fee, update_grade
-from queries import get_contestants
+from ctypes import HRESULT
+from unittest import result
+from flask import sessions
+from database import Category, Contestant, Session
 
 
-def main_menu():
-    while True:
-        print("\n--- Rehema Electoral System ---")
-        print("1. Create")
-        print("2. Read")
-        print("3. Update")
-        print("4. Delete")
-        print("5. Exit")
-        choice = input("Enter your choice: ")
-        if choice == '1':
-            create_menu()
-        elif choice == '2':
-            read_menu()
-        elif choice == '3':
-            update_menu()
-        elif choice == '4':
-            delete_menu()
-        elif choice == '5':
-            break
-        else:
-            print("Invalid choice! Please try again.")
+def show_menu():
+    print("Welcome to the Election System!")
+    print("1. View Contestants")
+    print("2. View Categories")
+    print("3. View Winners")
+    print("4. Exit")
 
-def create_menu():
-    while True:
-        print("\n--- Create Menu ---")
-        print("1. Create Category")
-        print("2. Create Grade")
-        print("3. Create Fee")
-        print("4. Create Contestant")
-        print("5. Back")
-        choice = input("Enter your choice: ")
-        if choice == '1':
-            create_category()
-        elif choice == '2':
-            create_grade()
-        elif choice == '3':
-            create_fee()
-        elif choice == '4':
-            create_contestant()
-        elif choice == '5':
-            break
-        else:
-            print("Invalid choice! Please try again.")
+def handle_menu_choice(choice):
+    if choice == 1:
+        view_contestants()
+    elif choice == 2:
+        view_categories()
+    elif choice == 3:
+        view_winners()
+    elif choice == 4:
+        exit_program()
+    else:
+        print("Invalid choice. Please try again.")
 
-def read_menu():
-    while True:
-        print("\n--- Read Menu ---")
-        print("1. Read Categories")
-        print("2. Read Grades")
-        print("3. Read Fees")
-        print("4. Read Contestants")
-        print("5. Back")
-        choice = input("Enter your choice: ")
-        if choice == '1':
-            read_categories()
-        elif choice == '2':
-            read_grades()
-        elif choice == '3':
-            read_fees()
-        elif choice == '4':
-            get_contestants()
-        elif choice == '5':
-            break
-        else:
-            print("Invalid choice! Please try again.")
+def view_contestants():
+    contestants = Session.query(Contestant).all()
+    for contestant in contestants:
+        print(f"ID: {contestant.id}, Name: {contestant.First_Name} {contestant.Last_Name}")
 
-def update_menu():
-    while True:
-        print("\n--- Update Menu ---")
-        print("1. Update Category")
-        print("2. Update Grade")
-        print("3. Update Fee")
-        print("4. Update Contestant")
-        print("5. Back")
-        choice = input("Enter your choice: ")
-        if choice == '1':
-            update_category()
-        elif choice == '2':
-            update_grade()
-        elif choice == '3':
-            update_fee()
-        elif choice == '4':
-            update_contestant()
-        elif choice == '5':
-            break
-        else:
-            print("Invalid choice! Please try again.")
+def view_categories():
+    categories = sessions.query(Category).all()
+    for category in categories:
+        print(f"ID: {category.id}, Level: {category.School_level}, Form Level: {category.Form_level}")
 
-def delete_menu():
-    while True:
-        print("\n--- Delete Menu ---")
-        print("1. Delete Category")
-        print("2. Delete Grade")
-        print("3. Delete Fee")
-        print("4. Delete Contestant")
-        print("5. Back")
-        choice = input("Enter your choice: ")
-        if choice == '1':
-            delete_category()
-        elif choice == '2':
-            delete_grade()
-        elif choice == '3':
-            delete_fee()
-        elif choice == '4':
-            delete_contestant()
-        elif choice == '5':
-            break
-        else:
-            print("Invalid choice! Please try again.")
+def view_winners():
+    winners = Session.query(Contestant).join(HRESULT).filter(result.Percentage_votes == 100).all()
+    for winner in winners:
+        print(f"ID: {winner.id}, Name: {winner.First_Name} {winner.Last_Name}")
+
+def exit_program():
+    Session.close()
+    print("Thank you for using the Election System. Goodbye!")
+
+def main():
+    show_menu()
+    choice = int(input("Enter your choice: "))
+    handle_menu_choice(choice)
 
 if __name__ == '__main__':
-    Base.metadata.create_all(engine_from_config)
-    main_menu()
+    main()
+

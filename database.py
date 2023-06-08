@@ -207,4 +207,3 @@ def delete_contestant():
         print("Contestant deleted successfully!")
     else:
         print("Contestant not found!")
-

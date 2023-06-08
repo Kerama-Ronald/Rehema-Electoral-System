@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from database import Base, Contestant, Category, Grade, Fees
+from database import Base, Contestant, Category, Grade, Fee
 
 
 engine = create_engine("sqlite:///rehema.db")
@@ -17,8 +17,8 @@ def seed_data():
     grade1 = Grade(Student_Grade='B')
     grade2 = Grade(Student_Grade='C')
 
-    fee1 = Fees(Balance=0)
-    fee2 = Fees(Balance=100)
+    fee1 = Fee(Balance=0)
+    fee2 = Fee(Balance=100)
 
     contestant1 = Contestant(First_Name='Faith', Last_Name='Kilonzi', Gender='Male', Form='7A', Stream='S')
     contestant2 = Contestant(First_Name='Raphael', Last_Name='Katana', Gender='Female',Form='3B', Stream='T')
