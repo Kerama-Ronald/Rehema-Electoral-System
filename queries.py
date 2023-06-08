@@ -1,7 +1,10 @@
 from sqlalchemy.orm import sessionmaker
-from database import Contestant, create_engine ,Category, Grade, Fee, Result, Voter
-from sqlalchemy import engine
+from database import Base, Contestant,Category, Grade, Fees, Result, Voter
+from sqlalchemy import engine, create_engine
 
+
+engine = create_engine("sqlite:///rehema.db")
+Base.metadata.create_all(engine)
 
 Session = sessionmaker(bind=engine)
 session = Session()
