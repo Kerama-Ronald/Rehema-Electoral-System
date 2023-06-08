@@ -44,22 +44,22 @@ def get_categories():
     
     return categories_list
 
-# def get_winners():
-#     winners = session.query(Contestant).join(Result).filter(Result.Percentage_votes == 100).all()
-#     winners_list = []
+def get_winners():
+    winners = session.query(Contestant).join(Result).filter(Result.Percentage_votes == 100).all()
+    winners_list = []
     
-#     for winner in winners:
-#         winner_dict = {
-#             'id': winner.id,
-#             'First_Name': winner.First_Name,
-#             'Last_Name': winner.Last_Name,
-#             'Gender': winner.Gender,
-#             'Category_id': winner.Category_id,
-#             'Form': winner.Form,
-#             'Stream': winner.Stream,
-#             'Grade_id': winner.Grade_id,
-#             'Fees_id': winner.Fees_id
-#         }
-#         winners_list.append(winner_dict)
+    for winner in winners:
+        winner_dict = {
+            'id': winner.id,
+            'First_Name': winner.First_Name,
+            'Last_Name': winner.Last_Name,
+            'Gender': winner.Gender,
+            'Category_id': winner.Category_id,
+            'Form': winner.Form,
+            'Stream': winner.Stream,
+            'Grade_id': winner.Grade_id,
+            'Fees_id': winner.Fees_id
+        }
+        winners_list.append(winner_dict)
     
-#     return winners_list
+    return winners_list

@@ -5,7 +5,7 @@ from database import Category, Contestant, Session
 
 
 def show_menu():
-    print("Welcome to the Election System!")
+    print("Welcome to Rehema Election System!")
     print("1. View Contestants")
     print("2. View Categories")
     print("3. View Winners")
