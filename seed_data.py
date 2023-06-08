@@ -1,9 +1,9 @@
 from sqlalchemy.orm import sessionmaker
-from database import Base, engine, Contestant, Category, Grade, Fee
+from database import Base, Contestant, Category, Grade, Fee
 
 
-Session = sessionmaker(bind=engine)
-session = Session()
+##Session = sessionmaker(bind=engine)
+##session = Session()
 
 def seed_data():
     
@@ -22,5 +22,5 @@ def seed_data():
     contestant1 = Contestant(First_Name='Faith', Last_Name='Kilonzi', Gender='Male', Category=category1, Form='7A', Stream='S', Grade=grade1, Fees=fee1)
     contestant2 = Contestant(First_Name='Raphael', Last_Name='Katana', Gender='Female', Category=category2, Form='3B', Stream='T', Grade=grade2, Fees=fee2)
 
-    session.add_all([category1, category2, grade1, grade2, fee1, fee2, contestant1, contestant2])
-    session.commit()
+    ##session.add_all([category1, category2, grade1, grade2, fee1, fee2, contestant1, contestant2])
+    ##session.commit()

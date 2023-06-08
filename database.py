@@ -22,21 +22,17 @@ class Contestant(Base):
     Stream = Column(String(32))
     Grade_id = Column(Integer, ForeignKey('Grades.id'))
     Fees_id = Column(Integer, ForeignKey('Fees.id'))
-    category = relationship("Category", backref="contestants")
-    grade = relationship("Grade", backref="contestants")
-    fees = relationship("Fee", uselist=False, backref="contestant")
-    results = relationship("Result", uselist=False, backref="contestant")
+    fees = relationship("Fees", foreign_keys=[Fees_id])
 
 class Grade(Base):
     __tablename__ = 'Grades'
     id = Column(Integer, primary_key=True)
     Student_Grade = Column(String(1))
 
-class Fee(Base):
+class Fees(Base):
     __tablename__ = 'Fees'
     id = Column(Integer, primary_key=True)
-    Fees_paid = Column(Integer)
-    contestant_id = Column(Integer, ForeignKey('Contestants.id'), unique=True)
+    Balance = Column(Integer)
 
 class Result(Base):
     __tablename__ = 'Results'
