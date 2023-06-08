@@ -1,5 +1,6 @@
 from sqlalchemy.orm import sessionmaker
-from database import Contestant, engine ,Category, Grade, Fee, Result, Voter
+from database import Contestant, create_engine ,Category, Grade, Fee, Result, Voter
+from sqlalchemy import engine
 
 
 Session = sessionmaker(bind=engine)
