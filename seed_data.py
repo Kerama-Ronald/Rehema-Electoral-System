@@ -24,4 +24,3 @@ def seed_data():
     session.add_all([category1, category2, fee1, fee2, grade1, grade2, contestant1, contestant2])
     session.commit()
 
-seed_data()
