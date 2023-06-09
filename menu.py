@@ -46,6 +46,7 @@ def exit_program():
     print("Thank you for using the Election System. Goodbye!")
     exit(0)
 
+
 def view_contestants():
     contestants = session.query(Contestant).all()
     for index, contestant in enumerate(contestants, start=1):

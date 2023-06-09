@@ -35,3 +35,5 @@ def seed_data():
     contestant_3 = Contestant(First_Name='Bob', Last_Name='Johnson', Gender='Male', Form='Form 3', Stream='T', Category_id=3, Grade_id=3, Fees_id=3)
     session.add_all([contestant1, contestant2, contestant_3])
     session.commit()
+    
+    seed_data()
